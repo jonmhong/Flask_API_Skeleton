@@ -19,7 +19,7 @@ try:
 	user_login = {'username': 'jonmhong', 'password': 'Hello World!'}
 	user_login = json.dumps(user_login)
 	url = address + '/user'
-	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "applications/json"})
+	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "application/json"})
 
 	if response['status'] != '200':
 		raise Exception('Received an unsuccessful status code of %s' % response['status'])
@@ -38,7 +38,7 @@ try:
 	user_login = dict(username='jonmhong', password='Hello World!', name="LinkedIn Profile", url_link="http://linkedin.com/in/jonhong")
 	user_login = json.dumps(user_login)
 	url = address + '/linkedin'
-	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "applications/json"})
+	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "application/json"})
 
 	if response['status'] != '200':
 		raise Exception("Received an unsuccessful status code of %s" % response['status'])
@@ -69,30 +69,4 @@ except Exception as err:
 
 else:
 	print "Test 3 PASS: App checks against invalid credentials"
-
-
-# Test 4: Read link with valid credentials
-try:
-	h = Http()
-	h.add_credentials('jonmhong', 'Hello World!')
-	user_login = dict(username='jonmhong', password='hello world')
-	user_login = json.dumps(user_login)
-	url = address + '/linkedin'
-	response, result = h.request(url, 'GET')
-
-	if response['status'] != '200':
-		raise Exception("Unable to access /linkedin with valid credentials")
-
-except Exception as err:
-	print "Test 4 FAILED"
-	print err.args
-
-else:
-	print "Test 4 PASS: Logged in user can view /linkedin"
-
-
-
-
-
-
-
+	
