@@ -21,7 +21,7 @@ try:
 	url = address + '/user'
 	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "application/json"})
 
-	if response['status'] != '200':
+	if response['status'] not in ['200', '201']:
 		raise Exception('Received an unsuccessful status code of %s' % response['status'])
 
 except Exception as err:
@@ -40,7 +40,7 @@ try:
 	url = address + '/linkedin'
 	response, result = h.request(url, 'POST', body=user_login, headers={"Content-Type": "application/json"})
 
-	if response['status'] != '200':
+	if response['status'] not in ['200', '201']:
 		raise Exception("Received an unsuccessful status code of %s" % response['status'])
 
 except Exception as err:
@@ -60,7 +60,7 @@ try:
 	failed_login = json.dumps(failed_login)
 
 	response, result = h.request(url, 'GET', urlencode(data))
-	if response['status'] == '200':
+	if response['status'] in ['200', '201']:
 		raise Exception("Security Flaw: Able to access content with invalid password")
 
 except Exception as err:
