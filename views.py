@@ -78,7 +78,6 @@ def add_user():
 		
 	# this checks the db if the username is already taken
 	if session.query(User).filter_by(username=user).first() is not None:
-		user = session.query(User).filter_by(username=user).first()
 		return jsonify({'message': 'user already exists'}), 200
 
 	# the orm creates a user, hashes the pw, and adds it to the db
